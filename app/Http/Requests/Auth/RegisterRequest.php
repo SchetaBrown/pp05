@@ -20,7 +20,6 @@ class RegisterRequest extends FormRequest
             'weight' => ['required', 'numeric', 'min:30', 'max:250'],
             'height' => ['required', 'numeric', 'min:70', 'max:350'],
             'gender_id' => ['required', 'integer', 'exists:genders,id'],
-            'role_id' => ['required', 'integer', 'exists:roles,id'],
             'activity_level_id' => ['required', 'integer', 'exists:activity_levels,id'],
             'goal_type_id' => ['required', 'integer', 'exists:goal_types,id'],
         ];

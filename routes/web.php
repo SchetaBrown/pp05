@@ -23,8 +23,14 @@ Route::middleware(['isAuth'])->group(function () {
     Route::get('/', [IndexController::class, 'index'])->name('index'); // Главная страница
 });
 
+
 // Маршруты администратора
 Route::middleware(['isAdmin'])->prefix('/admin')->name('admin.')->group(function () {
 
+});
+
+// Резервный маршрут
+Route::fallback(function () {
+    return redirect()->route('index');
 });
 

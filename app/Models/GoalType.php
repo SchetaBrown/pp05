@@ -12,6 +12,11 @@ class GoalType extends Model
         'calorie_modifier',
     ];
 
+    protected $hidden = [
+        'createt_at',
+        'updated_at',
+    ];
+
     public function user()
     {
         return $this->hasMany(User::class);

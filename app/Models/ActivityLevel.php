@@ -12,6 +12,11 @@ class ActivityLevel extends Model
         'multiplier',
     ];
 
+    protected $hidden = [
+        'createt_at',
+        'updated_at',
+    ];
+
     public function user()
     {
         return $this->hasMany(User::class);

@@ -19,20 +19,18 @@ class LoginController extends Controller
         $data = $request->validated();
 
         if (Auth::attempt($data)) {
-            return redirect()->intended();
+            return redirect()->route('index');
         }
 
-        return back()->withErrors([
+        return redirect()->back()->withErrors([
             'login' => 'Неверные учетные данные'
         ]);
-
     }
 
     public function destroy()
     {
         Auth::logout();
 
-        return redirect()->route('index');
-
+        return redirect()->route('login.create');
     }
 }
