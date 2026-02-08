@@ -25,10 +25,6 @@ return new class extends Migration {
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table
-                ->foreignId('product_unit_id')
-                ->default(1)
-                ->constrained();
 
             $table->timestamps();
         });

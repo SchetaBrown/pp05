@@ -2,16 +2,23 @@
 
 namespace App\Providers;
 
+use App\Services\Interfaces\ProductServiceInterface;
+use App\Services\Interfaces\UserRecordServiceInterface;
+use App\Services\ProductService;
+use App\Services\UserRecordService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
+    const BINDINS = [
+        ProductServiceInterface::class => ProductService::class,
+        UserRecordServiceInterface::class => UserRecordService::class,
+    ];
     public function register(): void
     {
-        //
+        foreach (self::BINDINS as $abstract => $concrete) {
+            $this->app->bind($abstract, $concrete);
+        }
     }
 
     /**

@@ -16,8 +16,13 @@ return new class extends Migration {
             $table->string('login');
             $table->string('email')->unique();
             $table->string('password');
-            $table->decimal('weight', 10, 2);
+            $table->float('weight');
             $table->float('height')->nullable();
+            $table->integer('age');
+
+            $table->float('protein_grams')->nullable()->default(1.5);
+            $table->float('fat_grams')->nullable()->default(1);
+            $table->float('carb_grams')->nullable()->default(4);
 
             $table
                 ->foreignId('role_id')

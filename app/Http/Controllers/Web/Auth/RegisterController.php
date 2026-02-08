@@ -6,6 +6,7 @@ use App\Models\ActivityLevel;
 use App\Models\Gender;
 use App\Models\GoalType;
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
@@ -24,7 +25,8 @@ class RegisterController extends Controller
     {
         try {
             $data = $request->validated();
-            User::create($data);
+            $user = User::create($data);
+            Auth::login($user);
             return redirect()->route('index');
         } catch (\Exception $e) {
             dd($e);

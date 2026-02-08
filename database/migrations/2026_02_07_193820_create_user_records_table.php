@@ -13,8 +13,9 @@ return new class extends Migration {
         Schema::create('user_records', function (Blueprint $table) {
             $table->id();
 
-            $table->decimal('quantity', 8, 2);
+            $table->float('quantity')->nullable();
             $table->date('date');
+
             $table
                 ->foreignId('user_id')
                 ->constrained()
@@ -26,6 +27,11 @@ return new class extends Migration {
             $table
                 ->foreignId('product_id')
                 ->constrained()
+                ->cascadeOnDelete();
+            $table
+                ->foreignId('product_unit_id')
+                ->default(1)
+                ->constrained('product_units')
                 ->cascadeOnDelete();
 
             $table->timestamps();

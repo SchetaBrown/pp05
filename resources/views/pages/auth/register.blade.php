@@ -37,6 +37,16 @@
                 </div>
             </div>
 
+            {{-- Возраст --}}
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Пароль</label>
+                <input type="password" name="age" required placeholder="Не менее 6 символов"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 @error('age') border-red-500 @enderror">
+                @error('age')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
             <!-- Пароль -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Пароль</label>
@@ -149,21 +159,17 @@
     </div>
 
     <script>
-        // Обработка выбора радио-кнопок
         document.querySelectorAll('.radio-group input').forEach(input => {
             input.addEventListener('change', function() {
-                // Убираем active у всех в группе
                 const groupName = this.name;
                 document.querySelectorAll(`[name="${groupName}"]`).forEach(radio => {
                     radio.parentElement.classList.remove('active');
                 });
 
-                // Добавляем active выбранному
                 this.parentElement.classList.add('active');
             });
         });
 
-        // Инициализация активных кнопок при загрузке
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.radio-group input:checked').forEach(input => {
                 input.parentElement.classList.add('active');

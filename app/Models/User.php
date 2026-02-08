@@ -23,7 +23,14 @@ class User extends Authenticatable
         'password',
         'weight',
         'height',
+        'age',
+        'protein_grams',
+        'fat_grams',
+        'carb_grams',
+        'role_id',
         'gender_id',
+        'activity_level_id',
+        'goal_type_id',
     ];
 
     /**

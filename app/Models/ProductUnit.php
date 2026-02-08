@@ -11,8 +11,8 @@ class ProductUnit extends Model
         'short_unit',
     ];
 
-    public function product()
+    public function userRecord()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(UserRecord::class);
     }
 }

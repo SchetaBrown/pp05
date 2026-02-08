@@ -13,7 +13,7 @@ class MealSeeder extends Seeder
     {
         foreach ($this->meals as $meal) {
             Meal::create([
-                'meal' => $meal,
+                'title' => $meal,
             ]);
         }
     }

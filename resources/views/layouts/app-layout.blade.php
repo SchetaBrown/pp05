@@ -8,12 +8,15 @@
     <title>@yield('title')</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     @vite(['resouces/js/app.js', 'resources/css/app.css'])
 </head>
 
-<body class="bg-gray-100 p-4">
+<body class="bg-gray-100">
     @include('partials.header')
-    @yield('content')
+    <main class="px-12.5 w-full py-25">
+        @yield('content')
+    </main>
     @include('partials.footer')
 </body>
 

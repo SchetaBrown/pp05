@@ -14,17 +14,11 @@ class Product extends Model
         'fat',
         'carbs',
         'product_category_id',
-        'product_unit_id',
     ];
 
     public function productCategory()
     {
         return $this->belongsTo(ProductCategory::class);
-    }
-
-    public function productUnit()
-    {
-        return $this->belongsTo(ProductUnit::class);
     }
 
     public function userRecord()

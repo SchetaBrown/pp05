@@ -3,6 +3,8 @@
 use App\Http\Controllers\Web\Auth\LoginController;
 use App\Http\Controllers\Web\Auth\RegisterController;
 use App\Http\Controllers\Web\IndexController;
+use App\Http\Controllers\Web\Product\ProductController;
+use App\Http\Controllers\Web\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // Вход в систему
@@ -21,6 +23,19 @@ Route::controller(RegisterController::class)->prefix('/register')->name("registe
 Route::middleware(['isAuth'])->group(function () {
     // Главная страница
     Route::get('/', [IndexController::class, 'index'])->name('index'); // Главная страница
+
+    // Управление профилем
+    Route::controller(ProfileController::class)->prefix('/profile')->name('profile.')->group(function () {
+        Route::get('/', 'index')->name('index'); // Главная страница профиля
+    });
+
+    // Управление продуктами
+    Route::controller(ProductController::class)->prefix('/products')->name('product.')->group(function () {
+        Route::get('/', 'index')->name('index'); // Просмотр всех продуктов
+        Route::get('/{product}', 'show')->name('show'); // Просмотр конкретного продукта
+        Route::post('/', 'store')->name('store'); // Добавление продукта к рациону
+        Route::delete('/{record}', 'destroy')->name('destroy'); // Удаление продукта из рациона
+    });
 });
 
 

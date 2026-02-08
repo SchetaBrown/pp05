@@ -15,9 +15,6 @@ class ProductSeeder extends Seeder
         // Получаем ID категорий
         $categories = ProductCategory::pluck('id', 'category')->toArray();
 
-        // Получаем ID единиц измерения
-        $units = ProductUnit::pluck('id', 'unit')->toArray();
-
         $products = [
             // Овощи (г)
             [
@@ -28,7 +25,6 @@ class ProductSeeder extends Seeder
                 'fat' => 0.1,
                 'carbs' => 3.0,
                 'product_category_id' => $categories['Овощи'],
-                'product_unit_id' => $units['Граммы'],
             ],
             [
                 'title' => 'Помидор',
@@ -38,7 +34,6 @@ class ProductSeeder extends Seeder
                 'fat' => 0.2,
                 'carbs' => 4.2,
                 'product_category_id' => $categories['Овощи'],
-                'product_unit_id' => $units['Граммы'],
             ],
             [
                 'title' => 'Картофель вареный',
@@ -48,7 +43,6 @@ class ProductSeeder extends Seeder
                 'fat' => 0.1,
                 'carbs' => 20.1,
                 'product_category_id' => $categories['Овощи'],
-                'product_unit_id' => $units['Граммы'],
             ],
             [
                 'title' => 'Морковь сырая',
@@ -58,7 +52,6 @@ class ProductSeeder extends Seeder
                 'fat' => 0.2,
                 'carbs' => 9.6,
                 'product_category_id' => $categories['Овощи'],
-                'product_unit_id' => $units['Граммы'],
             ],
 
             // Фрукты (г)
@@ -70,7 +63,6 @@ class ProductSeeder extends Seeder
                 'fat' => 0.2,
                 'carbs' => 14,
                 'product_category_id' => $categories['Фрукты'],
-                'product_unit_id' => $units['Граммы'],
             ],
             [
                 'title' => 'Банан',
@@ -80,7 +72,6 @@ class ProductSeeder extends Seeder
                 'fat' => 0.5,
                 'carbs' => 21,
                 'product_category_id' => $categories['Фрукты'],
-                'product_unit_id' => $units['Граммы'],
             ],
             [
                 'title' => 'Апельсин',
@@ -90,7 +81,6 @@ class ProductSeeder extends Seeder
                 'fat' => 0.1,
                 'carbs' => 12,
                 'product_category_id' => $categories['Фрукты'],
-                'product_unit_id' => $units['Граммы'],
             ],
 
             // Мясо и птица (г)
@@ -102,7 +92,6 @@ class ProductSeeder extends Seeder
                 'fat' => 3.6,
                 'carbs' => 0,
                 'product_category_id' => $categories['Мясо и птица'],
-                'product_unit_id' => $units['Граммы'],
             ],
             [
                 'title' => 'Говядина постная',
@@ -112,7 +101,6 @@ class ProductSeeder extends Seeder
                 'fat' => 15,
                 'carbs' => 0,
                 'product_category_id' => $categories['Мясо и птица'],
-                'product_unit_id' => $units['Граммы'],
             ],
             [
                 'title' => 'Яйцо куриное',
@@ -122,7 +110,6 @@ class ProductSeeder extends Seeder
                 'fat' => 11,
                 'carbs' => 1.1,
                 'product_category_id' => $categories['Мясо и птица'],
-                'product_unit_id' => $units['Штуки'],
             ],
 
             // Рыба и морепродукты (г)
@@ -134,7 +121,6 @@ class ProductSeeder extends Seeder
                 'fat' => 13,
                 'carbs' => 0,
                 'product_category_id' => $categories['Рыба и морепродукты'],
-                'product_unit_id' => $units['Граммы'],
             ],
             [
                 'title' => 'Креветки',
@@ -144,7 +130,6 @@ class ProductSeeder extends Seeder
                 'fat' => 0.3,
                 'carbs' => 0.2,
                 'product_category_id' => $categories['Рыба и морепродукты'],
-                'product_unit_id' => $units['Граммы'],
             ],
 
             // Молочные продукты
@@ -156,7 +141,6 @@ class ProductSeeder extends Seeder
                 'fat' => 5,
                 'carbs' => 1.8,
                 'product_category_id' => $categories['Молочные продукты'],
-                'product_unit_id' => $units['Граммы'],
             ],
             [
                 'title' => 'Молоко 2.5%',
@@ -166,7 +150,6 @@ class ProductSeeder extends Seeder
                 'fat' => 2.5,
                 'carbs' => 4.7,
                 'product_category_id' => $categories['Молочные продукты'],
-                'product_unit_id' => $units['Миллилитры'],
             ],
             [
                 'title' => 'Кефир 2.5%',
@@ -176,7 +159,6 @@ class ProductSeeder extends Seeder
                 'fat' => 2.5,
                 'carbs' => 4.0,
                 'product_category_id' => $categories['Молочные продукты'],
-                'product_unit_id' => $units['Миллилитры'],
             ],
 
             // Крупы и зерновые (г)
@@ -188,7 +170,6 @@ class ProductSeeder extends Seeder
                 'fat' => 1.1,
                 'carbs' => 21.3,
                 'product_category_id' => $categories['Крупы и зерновые'],
-                'product_unit_id' => $units['Граммы'],
             ],
             [
                 'title' => 'Рис белый вареный',
@@ -198,7 +179,6 @@ class ProductSeeder extends Seeder
                 'fat' => 0.3,
                 'carbs' => 28.2,
                 'product_category_id' => $categories['Крупы и зерновые'],
-                'product_unit_id' => $units['Граммы'],
             ],
             [
                 'title' => 'Овсянка на воде',
@@ -208,7 +188,6 @@ class ProductSeeder extends Seeder
                 'fat' => 1.7,
                 'carbs' => 15.0,
                 'product_category_id' => $categories['Крупы и зерновые'],
-                'product_unit_id' => $units['Граммы'],
             ],
 
             // Бобовые (г)
@@ -220,7 +199,6 @@ class ProductSeeder extends Seeder
                 'fat' => 0.4,
                 'carbs' => 20,
                 'product_category_id' => $categories['Бобовые'],
-                'product_unit_id' => $units['Граммы'],
             ],
 
             // Орехи и семена (г)
@@ -232,7 +210,6 @@ class ProductSeeder extends Seeder
                 'fat' => 49,
                 'carbs' => 22,
                 'product_category_id' => $categories['Орехи и семена'],
-                'product_unit_id' => $units['Граммы'],
             ],
             [
                 'title' => 'Грецкий орех',
@@ -242,7 +219,6 @@ class ProductSeeder extends Seeder
                 'fat' => 65,
                 'carbs' => 14,
                 'product_category_id' => $categories['Орехи и семена'],
-                'product_unit_id' => $units['Граммы'],
             ],
 
             // Масла и жиры
@@ -254,7 +230,6 @@ class ProductSeeder extends Seeder
                 'fat' => 100,
                 'carbs' => 0,
                 'product_category_id' => $categories['Масла и жиры'],
-                'product_unit_id' => $units['Столовая ложка'], // 15 мл ≈ 13.5 г
             ],
 
             // Сладости и десерты (г)
@@ -266,7 +241,6 @@ class ProductSeeder extends Seeder
                 'fat' => 29.7,
                 'carbs' => 59.4,
                 'product_category_id' => $categories['Сладости и десерты'],
-                'product_unit_id' => $units['Граммы'],
             ],
 
             // Напитки (мл)
@@ -278,7 +252,6 @@ class ProductSeeder extends Seeder
                 'fat' => 0,
                 'carbs' => 0,
                 'product_category_id' => $categories['Напитки'],
-                'product_unit_id' => $units['Миллилитры'],
             ],
             [
                 'title' => 'Чай черный без сахара',
@@ -288,7 +261,6 @@ class ProductSeeder extends Seeder
                 'fat' => 0,
                 'carbs' => 0.3,
                 'product_category_id' => $categories['Напитки'],
-                'product_unit_id' => $units['Миллилитры'],
             ],
             [
                 'title' => 'Кофе черный без сахара',
@@ -298,7 +270,6 @@ class ProductSeeder extends Seeder
                 'fat' => 0,
                 'carbs' => 0.3,
                 'product_category_id' => $categories['Напитки'],
-                'product_unit_id' => $units['Миллилитры'],
             ],
 
             // Другое
@@ -310,7 +281,6 @@ class ProductSeeder extends Seeder
                 'fat' => 3,
                 'carbs' => 49,
                 'product_category_id' => $categories['Другое'],
-                'product_unit_id' => $units['Граммы'],
             ],
         ];
 

@@ -12,6 +12,7 @@ class UserRecord extends Model
         'user_id',
         'meal_id',
         'product_id',
+        'product_unit_id',
     ];
 
     public function user()
@@ -25,5 +26,9 @@ class UserRecord extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+    public function productUnit()
+    {
+        return $this->belongsTo(ProductUnit::class);
     }
 }
