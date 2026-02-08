@@ -9,9 +9,9 @@ class MealRepository implements MealRepositoryInterface
 {
     private Meal $meal;
 
-    public function __construct()
+    public function __construct(Meal $meal)
     {
-        $this->meal = new Meal();
+        $this->meal = $meal;
     }
 
     public function getMeals()

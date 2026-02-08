@@ -8,4 +8,5 @@ interface UserRecordServiceInterface
 {
     public function getDataForIndexPage();
     public function destroyProductFromDiet(UserRecord $product);
+    public function setUserRecord($request, $product);
 }

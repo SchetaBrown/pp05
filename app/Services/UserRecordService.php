@@ -2,15 +2,20 @@
 
 namespace App\Services;
 
+use App\Models\Meal;
 use App\Models\User;
 use App\Models\UserRecord;
+use App\Repositories\Interfaces\ProductRepositoryInterface;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use App\Services\Interfaces\UserRecordServiceInterface;
 use App\Repositories\Interfaces\MealRepositoryInterface;
+use Illuminate\Http\Request;
 
 class UserRecordService implements UserRecordServiceInterface
 {
     private MealRepositoryInterface $mealRepository;
+    private ProductRepositoryInterface $productRepository;
     private User $user;
     const WEIGHT_CONSTANT = 10;
     const HEIGHT_CONSTANT = 6.25;
@@ -18,10 +23,11 @@ class UserRecordService implements UserRecordServiceInterface
     const MAN_CONSTANT = 5;
     const WOMAN_CONSTANT = 161;
 
-    public function __construct(MealRepositoryInterface $mealRepository)
+    public function __construct(MealRepositoryInterface $mealRepository, ProductRepositoryInterface $productRepository)
     {
         $this->mealRepository = $mealRepository;
         $this->user = Auth::user();
+        $this->productRepository = $productRepository;
     }
 
     public function getDataForIndexPage()
@@ -67,15 +73,9 @@ class UserRecordService implements UserRecordServiceInterface
                 $productQuantity = $record->quantity;
                 foreach ($productFields as $key => $value) {
                     if (array_key_exists($key, $nutrients)) {
-                        $nutrients[$key]['value'] += $product->$key *
-                            round(
-                                (
-                                    $productUnit === 'г' || $productUnit === 'мл' ? ($productQuantity / 100) : $productQuantity
-                                ),
-                                1
-                            );
+                        $nutrients[$key]['value'] +=
+                            $product->$key * round(($productUnit === 'г' || $productUnit === 'мл' ? ($productQuantity / 100) : $productQuantity), 1);
                     }
-
                 }
             }
         }
@@ -84,6 +84,25 @@ class UserRecordService implements UserRecordServiceInterface
             'records' => $records,
             'nutrients' => $nutrients,
         ];
+    }
+
+    public function setUserRecord($request, $product)
+    {
+        // dd(Meal::where('title', $request->meal_id)->orWhere('id', $request->meal_id)->first()->id);
+        try {
+            if ($request->has('meal_id') || $request->has('meal')) {
+                $record = UserRecord::create([
+                    'quantity' => $request->quantity,
+                    'user_id' => $this->user->id,
+                    'meal_id' => Meal::where('title', $request->meal_id)->orWhere('id', $request->meal_id)->first()->id,
+                    'product_id' => $product->id,
+                    'product_unit_id' => $request->product_unit_id,
+                ]);
+            }
+        } catch (Exception $e) {
+            dd($e);
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     private function getUserNormalCalories()

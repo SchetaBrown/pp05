@@ -11,7 +11,6 @@ class UserRecordSeeder extends Seeder
     private array $records = [
         [
             'quantity' => 150,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 3,
             'product_id' => 7,
@@ -19,7 +18,6 @@ class UserRecordSeeder extends Seeder
         ],
         [
             'quantity' => 75,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 1,
             'product_id' => 12,
@@ -27,7 +25,6 @@ class UserRecordSeeder extends Seeder
         ],
         [
             'quantity' => 50,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 2,
             'product_id' => 3,
@@ -35,7 +32,6 @@ class UserRecordSeeder extends Seeder
         ],
         [
             'quantity' => 250,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 4,
             'product_id' => 9,
@@ -43,7 +39,6 @@ class UserRecordSeeder extends Seeder
         ],
         [
             'quantity' => 100,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 1,
             'product_id' => 5,
@@ -51,15 +46,13 @@ class UserRecordSeeder extends Seeder
         ],
         [
             'quantity' => 150,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 3,
             'product_id' => 14,
-            'product_unit_id' => 3,
+            'product_unit_id' => 2,
         ],
         [
             'quantity' => 60,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 2,
             'product_id' => 2,
@@ -67,7 +60,6 @@ class UserRecordSeeder extends Seeder
         ],
         [
             'quantity' => 200,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 4,
             'product_id' => 11,
@@ -75,7 +67,6 @@ class UserRecordSeeder extends Seeder
         ],
         [
             'quantity' => 115,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 1,
             'product_id' => 6,
@@ -83,15 +74,13 @@ class UserRecordSeeder extends Seeder
         ],
         [
             'quantity' => 100,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 3,
             'product_id' => 13,
-            'product_unit_id' => 3,
+            'product_unit_id' => 2,
         ],
         [
             'quantity' => 130,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 2,
             'product_id' => 8,
@@ -99,7 +88,6 @@ class UserRecordSeeder extends Seeder
         ],
         [
             'quantity' => 85,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 4,
             'product_id' => 1,
@@ -107,23 +95,20 @@ class UserRecordSeeder extends Seeder
         ],
         [
             'quantity' => 2,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 1,
             'product_id' => 10,
-            'product_unit_id' => 5,
-        ],
-        [
-            'quantity' => 100,
-            'date' => '2026-02-08',
-            'user_id' => 1,
-            'meal_id' => 3,
-            'product_id' => 15,
             'product_unit_id' => 3,
         ],
         [
+            'quantity' => 100,
+            'user_id' => 1,
+            'meal_id' => 3,
+            'product_id' => 15,
+            'product_unit_id' => 2,
+        ],
+        [
             'quantity' => 50,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 2,
             'product_id' => 4,
@@ -131,7 +116,6 @@ class UserRecordSeeder extends Seeder
         ],
         [
             'quantity' => 60,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 4,
             'product_id' => 5,
@@ -139,7 +123,6 @@ class UserRecordSeeder extends Seeder
         ],
         [
             'quantity' => 30,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 1,
             'product_id' => 11,
@@ -147,7 +130,6 @@ class UserRecordSeeder extends Seeder
         ],
         [
             'quantity' => 50,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 3,
             'product_id' => 3,
@@ -155,7 +137,6 @@ class UserRecordSeeder extends Seeder
         ],
         [
             'quantity' => 30,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 2,
             'product_id' => 12,
@@ -163,7 +144,6 @@ class UserRecordSeeder extends Seeder
         ],
         [
             'quantity' => 30,
-            'date' => '2026-02-08',
             'user_id' => 1,
             'meal_id' => 4,
             'product_id' => 7,

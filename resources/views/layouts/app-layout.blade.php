@@ -13,7 +13,11 @@
 </head>
 
 <body class="bg-gray-100">
-    @include('partials.header')
+    @if (!request()->routeIs('product.*'))
+        @include('partials.header')
+    @else
+        @include('partials.product-header')
+    @endif
     <main class="px-12.5 w-full py-25">
         @yield('content')
     </main>

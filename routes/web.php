@@ -32,8 +32,7 @@ Route::middleware(['isAuth'])->group(function () {
     // Управление продуктами
     Route::controller(ProductController::class)->prefix('/products')->name('product.')->group(function () {
         Route::get('/', 'index')->name('index'); // Просмотр всех продуктов
-        Route::get('/{product}', 'show')->name('show'); // Просмотр конкретного продукта
-        Route::post('/', 'store')->name('store'); // Добавление продукта к рациону
+        Route::post('/{product}', 'store')->name('store'); // Добавление продукта к рациону
         Route::delete('/{record}', 'destroy')->name('destroy'); // Удаление продукта из рациона
     });
 });

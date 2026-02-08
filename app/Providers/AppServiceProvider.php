@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
-use App\Services\Interfaces\ProductServiceInterface;
-use App\Services\Interfaces\UserRecordServiceInterface;
 use App\Services\ProductService;
 use App\Services\UserRecordService;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use App\Services\Interfaces\ProductServiceInterface;
+use App\Services\Interfaces\UserRecordServiceInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Paginator::useBootstrapFive();
     }
 }
