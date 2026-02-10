@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
 
             $table->float('quantity')->nullable();
+            $table->date('date')->default(now()->format('Y-m-d'));
 
             $table
                 ->foreignId('user_id')

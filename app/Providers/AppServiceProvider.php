@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
+use App\Services\Interfaces\UserServiceInterface;
 use App\Services\ProductService;
 use App\Services\UserRecordService;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Support\ServiceProvider;
+use App\Services\UserService;
+use Illuminate\Support\ServiceProvider; 
 use App\Services\Interfaces\ProductServiceInterface;
 use App\Services\Interfaces\UserRecordServiceInterface;
 
@@ -14,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     const BINDINS = [
         ProductServiceInterface::class => ProductService::class,
         UserRecordServiceInterface::class => UserRecordService::class,
+        UserServiceInterface::class => UserService::class
     ];
     public function register(): void
     {

@@ -40,7 +40,9 @@ class ProductController extends Controller
     {
         $this->userRecordService->setUserRecord($request, $product);
 
-        return redirect()->route('index');
+        return redirect()->route('index', [
+            'day' => session()->get('day')
+        ]);
     }
 
     public function destroy(UserRecord $record)

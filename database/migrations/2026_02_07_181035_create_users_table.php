@@ -20,6 +20,8 @@ return new class extends Migration {
             $table->float('height')->nullable();
             $table->integer('age');
 
+            $table->float('normal_calories')->nullable();
+
             $table
                 ->foreignId('role_id')
                 ->default(1)

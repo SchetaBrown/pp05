@@ -8,6 +8,7 @@ class UserRecord extends Model
 {
     protected $fillable = [
         'quantity',
+        'date',
         'user_id',
         'meal_id',
         'product_id',

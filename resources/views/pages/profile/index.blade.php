@@ -86,15 +86,17 @@
         </div>
         <div class="bg-white rounded-xl shadow-sm p-6">
             <h2 class="font-medium mb-4">Действия</h2>
-            <a href="{{ route('admin.index') }}"
-                class="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 group mb-4 border-gray-200">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
-                        <i class="fas fa-cog text-purple-600"></i>
+            @if ($user->role->role === 'admin')
+                <a href="{{ route('admin.index') }}"
+                    class="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 group mb-4 border-gray-200">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
+                            <i class="fas fa-cog text-purple-600"></i>
+                        </div>
+                        <span class="font-medium">Админ-панель</span>
                     </div>
-                    <span class="font-medium">Админ-панель</span>
-                </div>
-            </a>
+                </a>
+            @endif
             <form action="{{ route('login.destroy') }}" method="POST">
                 @method('DELETE')
                 @csrf

@@ -4,6 +4,14 @@
 @endsection
 
 @section('content')
+    <section class="flex items-center justify-between mb-4">
+        <h1 class="font-semibold text-xl">Дневник питания</h1>
+        <form method="GET" class="flex items-center gap-2">
+            <input type="date" name="day" id="day" value="{{ $userRecords['current_day'] }}"
+                onchange="this.form.submit()" class="px-2 py-1 border rounded">
+        </form>
+    </section>
+
     <section class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
         @foreach ($userRecords['nutrients'] as $key => $value)
             <div class="bg-white p-3 rounded border border-gray-200">

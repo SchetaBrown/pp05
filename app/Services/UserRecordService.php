@@ -27,24 +27,6 @@ class UserRecordService implements UserRecordServiceInterface
     const FAT_CALORIES_PER_GRAM = 9;
     const CARB_CALORIES_PER_GRAM = 4;
 
-    // НАСТРОЙКИ ПО ЦЕЛЯМ (белки в г/кг)
-    private const PROTEIN_PER_KG = [
-        1 => 2.0,  // Похудение
-        4 => 2.2,  // Сушка
-        3 => 1.8,  // Набор массы
-        2 => 1.6,  // Поддержание
-        5 => 1.2,  // Улучшение здоровья (ближе к нормам Минздрава)
-    ];
-
-    // Проценты жиров по целям
-    private const FAT_PERCENT = [
-        1 => 0.25, // Похудение: 25%
-        4 => 0.20, // Сушка: 20%
-        3 => 0.30, // Набор: 30%
-        2 => 0.25, // Поддержание: 25%
-        5 => 0.30, // Здоровье: 30%
-    ];
-
     public function __construct(MealRepositoryInterface $mealRepository, ProductRepositoryInterface $productRepository)
     {
         $this->mealRepository = $mealRepository;
@@ -52,10 +34,17 @@ class UserRecordService implements UserRecordServiceInterface
         $this->productRepository = $productRepository;
     }
 
-    public function getDataForIndexPage()
+    public function getDataForIndexPage(Request $request)
     {
         $meals = $this->mealRepository->getMeals();
-        $records = [];
+        $records = collect([]);
+        $day = $request->has('day')
+            ? $request->day
+            : (session()->get('day') ?? now()->format('Y-m-d'));
+
+
+        // 3. СРАЗУ сохраняем эту дату в сессию!
+        session()->put('day', $day);
 
         $nutrients = [
             'calories' => [
@@ -82,6 +71,7 @@ class UserRecordService implements UserRecordServiceInterface
                 UserRecord::with(['user', 'meal', 'product', 'productUnit'])
                     ->where('meal_id', $meal->id)
                     ->where('user_id', Auth::id())
+                    ->whereDate('date', $day)
                     ->orderByDesc('created_at')
                     ->get();
 
@@ -102,16 +92,18 @@ class UserRecordService implements UserRecordServiceInterface
         return [
             'records' => $records,
             'nutrients' => $nutrients,
+            'current_day' => $this->getCurrentDay($request)
         ];
     }
 
-    public function setUserRecord($request, $product)
+    public function setUserRecord(Request $request, $product)
     {
         try {
             if ($request->has('meal_id') || $request->has('meal')) {
                 UserRecord::create([
                     'quantity' => $request->quantity,
                     'user_id' => $this->user->id,
+                    'date' => session()->get('day'),
                     'meal_id' => Meal::where('title', $request->meal_id)->orWhere('id', $request->meal_id)->first()->id,
                     'product_id' => $product->id,
                     'product_unit_id' => $request->product_unit_id,
@@ -122,25 +114,13 @@ class UserRecordService implements UserRecordServiceInterface
         }
     }
 
-    private function getUserNormalCalories()
+    private function getCurrentDay(Request $request)
     {
-        $activityLevel = $this->user->activityLevel->multiplier;
-        $goal = $this->user->goalType->calorie_modifier;
-        $weight = $this->user->weight;
-        $height = $this->user->height;
-        $age = $this->user->age;
-
-        $overallData = (self::WEIGHT_CONSTANT * $weight) +
-            (self::HEIGHT_CONSTANT * $height) -
-            (self::AGE_CONSTANT * $age);
-
-        if ($this->user->gender->gender === 'Мужчина') {
-            $bmr = $overallData + self::MAN_CONSTANT;
-        } else {
-            $bmr = $overallData - self::WOMAN_CONSTANT;
+        if ($request->has('day')) {
+            return $request->day;
         }
 
-        return round($bmr * $activityLevel * $goal, 0);
+        return now()->format('Y-m-d');
     }
 
     public function destroyProductFromDiet(UserRecord $product)

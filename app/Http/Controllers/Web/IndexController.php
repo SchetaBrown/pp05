@@ -15,10 +15,10 @@ class IndexController extends Controller
         $this->userRecordService = $userRecordService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         return view('pages.index', [
-            'userRecords' => $this->userRecordService->getDataForIndexPage()
+            'userRecords' => $this->userRecordService->getDataForIndexPage($request)
         ]);
     }
 }
