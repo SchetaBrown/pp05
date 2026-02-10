@@ -17,4 +17,5 @@ interface UserRepositoryInterface
     public function getAllRoles();
     public function getAllActivityLevels();
     public function getAllGenders();
+    public function updateUserSettings(User $user, Request $request);
 }

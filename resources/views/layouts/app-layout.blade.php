@@ -13,11 +13,7 @@
 </head>
 
 <body class="bg-gray-100">
-    @if (!request()->routeIs('product.*') && !request()->routeIs('profile.*') && !request()->routeIs('admin.*'))
-        @include('partials.header')
-    @else
-        @include('partials.product-header')
-    @endif
+    @include('partials.header')
     <main class="px-12.5 w-full py-25">
         @yield('content')
     </main>

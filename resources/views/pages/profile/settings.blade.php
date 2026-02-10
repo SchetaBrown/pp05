@@ -50,7 +50,6 @@
                     </form>
                 </div>
 
-                {{-- Цель --}}
                 <div class="space-y-2">
                     <div class="flex items-center justify-between">
                         <label for="goal_type" class="text-sm font-medium text-gray-700">
@@ -93,6 +92,32 @@
         </div>
         <div class="w-full p-6 rounded-xl bg-white shadow-sm border border-gray-100">
             <h2 class="text-lg font-semibold text-gray-800 mb-6">Изменение целевых параметров</h2>
+            <div class="space-y-6">
+                <form class="space-y-2" action="{{ route('profile.setting.update') }}" method="POST">
+                    @method('PATCH')
+                    @csrf
+                    <div class="flex flex-col gap-2">
+                        <label for="{{ $user->age }}" class="text-sm font-medium text-gray-700">Возраст</label>
+                        <input type="number" name="age" value="{{ $user->age }}"
+                            class="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white transition-colors hover:border-gray-400">
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label for="{{ $user->weight }}" class="text-sm font-medium text-gray-700">Вес (в кг)</label>
+                        <input type="number" name="weight" value="{{ $user->weight }}"
+                            class="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white transition-colors hover:border-gray-400">
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label for="{{ $user->height }}" class="text-sm font-medium text-gray-700">Рост</label>
+                        <input type="" name="height" value="{{ $user->height }}"
+                            class="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white transition-colors hover:border-gray-400">
+                    </div>
+                    <div class="flex justify-end space-y-2">
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            Обновить данные
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 @endsection

@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Gender;
 use App\Models\GoalType;
+use App\Services\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
 use App\Models\ActivityLevel;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,13 @@ use App\Repositories\Interfaces\UserRepositoryInterface;
 
 class UserRepository implements UserRepositoryInterface
 {
+    private UserServiceInterface $userService;
+
+    public function __construct(UserServiceInterface $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function getAllUsers(Request $request, $paginate = 10)
     {
         $users = User::with(['role', 'activityLevel', 'goalType', 'gender'])->orderBy('role_id', 'desc');
@@ -46,6 +54,24 @@ class UserRepository implements UserRepositoryInterface
         }
 
         return redirect()->back()->with('error', 'Недостаточно прав для изменения роли');
+    }
+
+    public function updateUserSettings(User $user, Request $request)
+    {
+        $settings = ['activity_level_id', 'goal_type_id', 'weight', 'height', 'age'];
+        try {
+            foreach ($settings as $setting) {
+                if ($request->has($setting)) {
+                    $user->update([
+                        "{$setting}" => $request->$setting
+                    ]);
+                }
+                $this->userService->setUserNormalCalories($user);
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with("error", $e->getMessage());
+        }
+
     }
 
     public function getAllActivityLevels()
