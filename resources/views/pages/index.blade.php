@@ -3,13 +3,31 @@
     Главная страница
 @endsection
 
+@php
+    $userCalories = $user->normal_calories - $userRecords['nutrients']['calories']['value'] > 0;
+@endphp
+
 @section('content')
-    <section class="flex items-center justify-between mb-4">
-        <h1 class="font-semibold text-xl">Дневник питания</h1>
+    <section class="flex items-center gap-4 mb-4">
+        <div class="flex flex-col gap-0.5">
+            <h1 class="font-semibold text-xl">Дневник питания</h1>
+            <span class="block text-sm font-medium text-gray-700 mb-1">Дата: {{ $userRecords['current_day'] }}</span>
+        </div>
         <form method="GET" class="flex items-center gap-2">
             <input type="date" name="day" id="day" value="{{ $userRecords['current_day'] }}"
-                onchange="this.form.submit()" class="px-2 py-1 border rounded">
+                onchange="this.form.submit()" class="px-2 py-1 border rounded bg-white border-gray-200">
         </form>
+    </section>
+    <section class="flex items-center justify-between w-full bg-white rounded-md py-5 px-6 mb-6">
+        @if ($userCalories)
+            <h2 class="font-medium">Осталось калорий</h2>
+            <span
+                class="text-lg font-bold text-green-600">+{{ $user->normal_calories - $userRecords['nutrients']['calories']['value'] }}</span>
+        @else
+            <h2 class="font-medium">Превышение калорий на:</h2>
+            <span
+                class="text-lg font-bold text-red-600">+{{ $userRecords['nutrients']['calories']['value'] - $user->normal_calories }}</span>
+        @endif
     </section>
 
     <section class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
