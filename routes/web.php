@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\Web\Admin\AdminIndexController;
-use App\Http\Controllers\Web\Admin\Product\AdminProductController;
-use App\Http\Controllers\Web\Admin\User\AdminUserController;
+use App\Http\Controllers\Web\Profile\AboutController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Web\IndexController;
 use App\Http\Controllers\Web\Auth\LoginController;
 use App\Http\Controllers\Web\Auth\RegisterController;
-use App\Http\Controllers\Web\IndexController;
 use App\Http\Controllers\Web\Product\ProductController;
 use App\Http\Controllers\Web\Profile\ProfileController;
-use App\Http\Controllers\Web\Setting\SettingController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Web\Profile\SettingController;
+use App\Http\Controllers\Web\Admin\AdminIndexController;
+use App\Http\Controllers\Web\Admin\User\AdminUserController;
+use App\Http\Controllers\Web\Admin\Product\AdminProductController;
 
 // Вход в систему
 Route::controller(LoginController::class)->prefix('/login')->name("login.")->group(function () {
@@ -29,8 +30,9 @@ Route::middleware(['isAuth'])->group(function () {
     Route::get('/', [IndexController::class, 'index'])->name('index'); // Главная страница
 
 
+    // Управление профилем
     Route::prefix('/profile')->name('profile.')->group(function () {
-        // Управление профилем
+        //Общая информация
         Route::controller(ProfileController::class)->group(function () {
             Route::get('/', 'index')->name('index'); // Главная страница профиля
         });
@@ -40,6 +42,8 @@ Route::middleware(['isAuth'])->group(function () {
             Route::get('/', 'index')->name('index'); // Главая страница профиля
             Route::patch('/update', 'update')->name('update'); // Обновление цели или активности
         });
+
+        Route::get('/about', AboutController::class)->name('about'); // Страница для просмотра дополнительной информации
     });
 
     // Управление продуктами

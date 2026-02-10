@@ -4,28 +4,7 @@
 @endsection
 
 @section('content')
-    <section class="flex items-center justify-center bg-white rounded-xl py-10 border border-gray-200">
-        <div class="flex flex-col gap-1">
-            <div class="size-25 rounded-full bg-black"></div>
-            <span class="text-center font-medium text-[20px]">{{ $user->login }}</span>
-        </div>
-    </section>
-    <nav class="my-4">
-        <ul class="flex justify-center gap-4">
-            <li class="flex justify-center">
-                <a href="{{ route('profile.index') }}"
-                    class=" py-3 text-center font-medium text-gray-600 hover:text-blue-600">
-                    Общая информация
-                </a>
-            </li>
-            <li class="flex justify-center">
-                <a href="{{ route('profile.setting.index') }}"
-                    class="flex-1 py-3 text-center font-medium text-gray-600 hover:text-blue-600">
-                    Настройки
-                </a>
-            </li>
-        </ul>
-    </nav>
+    @include('partials.profile-user')
     <section class="w-full bg-white p-6 rounded-xl border border-gray-200 shadow-sm mb-4">
         <h2 class="font-medium mb-4">Личная информация</h2>
         <div class="flex flex-col gap-2">
@@ -55,6 +34,14 @@
                 <label class="block text-sm font-medium text-gray-700 mb-1">Пол</label>
                 <input type="text" disabled class="w-full px-3 py-2 border rounded bg-gray-50 border-gray-300"
                     value="{{ $user->gender->gender }}">
+            </div>
+            <div class="flex flex-col">
+                <div class="flex gap-2 mb-1">
+                    <label class="block text-sm font-medium text-gray-700">Норма калорий</label>
+                    <a href="{{ route('profile.about') }}" class="text-sm text-blue-600 font-medium">Подробнее...</a>
+                </div>
+                <input type="text" disabled class="w-full px-3 py-2 border rounded bg-gray-50 border-gray-300"
+                    value="{{ $user->normal_calories }}">
             </div>
         </div>
     </section>

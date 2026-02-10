@@ -4,6 +4,7 @@
 @endsection
 
 @section('content')
+    @include('partials.profile-user')
     <section class="w-full p-6 rounded-xl bg-white shadow-sm border border-gray-100">
         <h2 class="text-lg font-semibold text-gray-800 mb-6">Настройки питания</h2>
 
@@ -14,7 +15,8 @@
                         Уровень активности
                     </label>
                     <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
-                        Текущий: {{ $user->activityLevel->level ?? 'Не указан' }}
+                        Текущий: {{ $user->activityLevel->level ?? 'Не указан' }}. Коэффициент:
+                        {{ $user->activityLevel->multiplier }}
                     </span>
                 </div>
 
@@ -51,7 +53,7 @@
                         Цель
                     </label>
                     <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
-                        Текущая: {{ $user->goalType->type ?? 'Не указана' }}
+                        Текущая: {{ $user->goalType->type ?? 'Не указана' }} {{ $user->goalType->calorie_modifier }}
                     </span>
                 </div>
 

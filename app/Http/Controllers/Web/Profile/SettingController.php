@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web\Setting;
+namespace App\Http\Controllers\Web\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLevel;
@@ -18,7 +18,6 @@ class SettingController extends Controller
     public function index()
     {
         return view('pages.profile.settings', [
-            'user' => auth()->user(),
             'goals' => GoalType::get(),
             'activityLevels' => ActivityLevel::get(),
         ]);
